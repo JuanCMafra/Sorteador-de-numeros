@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --font-family-sora: 'Sora', sans-serif;
+  --font-family-mono: 'Roboto Mono', monospace;
+  --font-family-flex: 'Roboto Flex', sans-serif;
+
+  --display-large: bolder 72px/130% var(--font-family-sora);
+  --display-medium: bolder 40px/130% var(--font-family-sora);
+  --display-small: bold 32px/130% var(--font-family-sora);
+
+  --overline: bolder 16px/150% var(--font-family-mono);
+
+  --paragraph-large: medium 16px/150% var(--font-family-flex);  
+  --paragraph-medium: medium 14px/150% var(--font-family-flex); 
+  --paragraph-small: medium 12px/150% var(--font-family-flex); 
+  --label-medium: bold 20px/150% var(--font-family-flex); 
+  --label-small: bold 16px/150% var(--font-family-flex);  
+}

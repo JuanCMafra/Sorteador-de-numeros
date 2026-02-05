@@ -84,14 +84,88 @@ section.content {
   gap: 8px;
   margin-bottom: 42px;
 
-  h3 {
+  & h3 {
     font: var(--overline);
-    color: linear-gradient(90deg, var(--gradient-content));
+    background: linear-gradient(90deg, var(--gradient-content));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    padding-bottom: .5rem;
+  }
 
-    small {
-      font-size: 14px;
+  & h1 {
+    font: var(--display-medium);
+  }
+}
+
+.mobile-only{
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-top: 80px;
+
+
+  & .text {
+    display: flex;
+    flex-direction: column;
+    padding-left: 28px;
+    position: relative;
+
+    & h4{
+      font: var(--paragraph-medium);
+      color: var(--content-brand);
+    }
+
+    & p{
+      font: var(--paragraph-small);
+      color: var(--content-secondary);
+    }
+
+    & img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+    }
+  } 
+}
+
+aside .first {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  & header {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    & h2 {
+      font: var(--label-medium);
+      color: var(--content-primary);
+    }
+
+    & p {
+      font: var(--paragraph-medium);
+      color: var(--content-tertiary);
     }
   }
+
+  & #drawer{
+    & .box{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+}
+
+aside .second {
+  display: none;
+  flex-direction: column;
+  gap: 24px;
 }
 
 @media (width >= 80em) {
@@ -104,10 +178,62 @@ section.content {
   }
 
   .desktop-only {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    margin-top: 38px;
+    max-width: 366px;
+
+    & .text {
+      display: flex;
+      flex-direction: column;
+      padding-left: 28px;
+      position: relative;
+
+      & h4{
+        font: var(--paragraph-medium);
+        color: var(--content-brand);
+      }
+
+      & p{
+        font: var(--paragraph-small);
+        color: var(--content-secondary);
+      }
+
+      & img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
+      }
+    } 
   }
 
-  .mobile-only {
+  main div.explaining.mobile-only {
     display: none;
+  }
+
+  h3{
+    padding-bottom: 12px;
+  }
+
+  h1{
+    font: var(--display-large) ;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 108px;
+  }
+
+  aside .first {
+    & header {
+      & p {
+        font: var(--paragraph-large);
+        color: var(--content-secondary);
+      }
+  }
   }
 }

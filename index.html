@@ -46,24 +46,30 @@
               <div class="numbers">
                 <div class="box">
                   <label for="numbers">NÚMEROS</label>
-                  <input type="number" id="numbers" name="numbers" required>
+                  <div class="input-wrapper">
+                    <input type="number" id="numbers" name="numbers" required>
+                  </div>
                 </div>
 
                 <div class="box">
                   <label for="minimo">DE</label>
-                  <input type="number" id="minimo" name="minimo" required>
+                  <div class="input-wrapper">
+                    <input type="number" id="minimo" name="minimo" required>
+                  </div>
                 </div>
                   
                 <div class="box">
                   <label for="maximo">ATÉ</label>
-                  <input type="number" id="maximo" name="maximo" required>
+                  <div class="input-wrapper">
+                    <input type="number" id="maximo" name="maximo" required>
+                  </div>
                 </div>
               </div>
               
-              <label for="unique"> 
+              <label class="switch" for="unique"> 
                 <input type="checkbox" id="unique" name="unique">
                 <span class="slider"></span>
-                Não repetir números
+                <span class="text">Não repetir números</span>
               </label>
             </div>                      
 

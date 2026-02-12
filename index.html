@@ -36,13 +36,13 @@
 
       <aside>
         <form action="#" class="sorteador">
-          <div class="first">
+          <div id="first" class="display-none">
             <header>
               <h2>QUERO SORTEAR:</h2>
               <p>defina o intervalo e a quantidade de números, clique em "Sortear" e veja os resultados na tela. É rápido e fácil!</p>
             </header>
             
-            <div id="drawer">
+            <div id="drawer" >
               <div class="numbers">
                 <div class="box">
                   <label for="numbers">NÚMEROS</label>
@@ -73,18 +73,23 @@
               </label>
             </div>                      
 
-            <button type="submit" id="draw">
+            <button type="submit" id="draw" class="draw">
               <p>SORTEAR</p>
               <img src="img/arrow.svg" alt="">
             </button>
           </div>
 
-          <div class="second">
+          <div id="second">
             <header>
               <h2>RESULTADO DO SORTEIO</h2>
-              <p id="result"></p>
-            <button type="submit" id="draw-again">
-                SORTEAR NOVAMENTE
+              <p><small>1</small>º  RESULTADO</p>
+            </header>
+              <ul id="results">
+                <li>23</li>
+                <li>45</li>
+              </ul>              
+            <button type="submit" id="draw-again" class="draw">
+                <p>SORTEAR NOVAMENTE</p>
               <img src="img/repeat.svg" alt="">
             </button>
           </div>        

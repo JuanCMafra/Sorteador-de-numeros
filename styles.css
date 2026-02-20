@@ -346,14 +346,33 @@ aside #second {
   }
 
   & #results {
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
     gap: 16px;
-    list-style: none;
+    justify-content: center;
 
     & li {
+      position: relative;
       font: bolder 48px/150% var(--font-family-mono);
-     color: var(--content-brand);
-     padding-inline: 13px;
+      color: var(--content-brand);
+      padding-inline: 20px;
+      list-style: none;
+      opacity: 1;
+
+      --offset: calc(var(--i) - (var(--total) - 1) / 2);
+
+      animation: number-move 6s forwards;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: -16px;
+        background: url(/img/square.svg) no-repeat center / contain;
+        z-index: -1;
+
+         animation: square-spin 6s forwards;
+         animation-timing-function: cubic-bezier(0.4, 0.5, 0.8, 1);
+      }
     } 
   }
 }
@@ -371,6 +390,16 @@ aside #second {
     transition: background-color 0.3s ease-in-out;
     z-index: 0;
     position: relative;
+
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    & img {
+      width: 24px;
+      height: 24px;
+    }
 
     & p{
       font: var(--label-medium);
@@ -399,7 +428,7 @@ aside #second {
 
       opacity: 0;
       transition: opacity 0.3s ease;
-      pointer-events: none;      
+      pointer-events: none;  
     }
 
     & > * {
@@ -411,6 +440,18 @@ aside #second {
       opacity: 1;
       animation-play-state: running;
     }
+}
+
+.draw.show{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#draw-again {
+  opacity: 0;
+  animation: draw-appear 0.5s ease forwards;
+  animation-delay: 6.2s;
 }
 
 @media (width >= 80em) {
@@ -485,10 +526,18 @@ aside #second {
 
   aside #second {
     max-width: 482px;
+    position: translateY(48px);
+    transition: transform 1s ease;
+    transition-delay: 6s;
     & .draw {
       width: 100%;
     }
+
   } 
+
+  #second.shift-up{
+  transform: translateY(-48px);
+}
 
   aside {
     & #first {
@@ -519,5 +568,63 @@ aside #second {
   }
   100% {
     background-position: 100% 50%;
+  }
+}
+
+@keyframes square-spin {
+
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: rotate(0deg);
+
+  }
+
+  90% {
+    transform: rotate(360deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes number-move {
+  0% {
+    
+    color: var(--content-brand);
+    transform:
+      translateX(calc(var(--offset) * -80px))
+      scale(1);
+  }
+
+  30% {
+    
+    color: var(--content-brand);
+  }
+
+  40% {
+  
+    color: #000;
+  }
+
+  90% {
+    color: #000;
+  }
+
+  100% {
+    color: var(--content-brand);
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes draw-appear {
+  to {
+    opacity: 1;
+    pointer-events: auto;
   }
 }

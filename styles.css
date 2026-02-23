@@ -357,11 +357,11 @@ aside #second {
       color: var(--content-brand);
       padding-inline: 20px;
       list-style: none;
-      opacity: 1;
+      opacity: 0;
 
       --offset: calc(var(--i) - (var(--total) - 1) / 2);
 
-      animation: number-move 6s forwards;
+      animation: number-move 7s ease forwards;
 
       &::before {
         content: "";
@@ -369,8 +369,9 @@ aside #second {
         inset: -16px;
         background: url(/img/square.svg) no-repeat center / contain;
         z-index: -1;
+        opacity: 0;
 
-         animation: square-spin 6s forwards;
+         animation: square-spin 7s ease forwards;
          animation-timing-function: cubic-bezier(0.4, 0.5, 0.8, 1);
       }
     } 
@@ -451,7 +452,7 @@ aside #second {
 #draw-again {
   opacity: 0;
   animation: draw-appear 0.5s ease forwards;
-  animation-delay: 6.2s;
+  animation-delay: 5.2s;
 }
 
 @media (width >= 80em) {
@@ -528,7 +529,7 @@ aside #second {
     max-width: 482px;
     position: translateY(48px);
     transition: transform 1s ease;
-    transition-delay: 6s;
+    transition-delay: 8.5s;
     & .draw {
       width: 100%;
     }
@@ -575,11 +576,11 @@ aside #second {
 
   0% {
     transform: rotate(0deg);
-    opacity: 1;
+    opacity: 0;
   }
-  20% {
+  30% {
     transform: rotate(0deg);
-
+    opacity: 1;
   }
 
   90% {
@@ -595,28 +596,35 @@ aside #second {
 
 @keyframes number-move {
   0% {
-    
+    opacity: 0;
     color: var(--content-brand);
     transform:
       translateX(calc(var(--offset) * -80px))
       scale(1);
   }
 
+  25% {
+    opacity: 0;
+    color: var(--content-brand);
+  }
+
   30% {
-    
+    opacity: 1;
     color: var(--content-brand);
   }
 
   40% {
-  
+    opacity: 1;
     color: #000;
   }
 
-  90% {
+  95% {
+    opacity: 1;
     color: #000;
   }
 
   100% {
+    opacity: 1;
     color: var(--content-brand);
     transform: translateX(0) scale(1);
   }

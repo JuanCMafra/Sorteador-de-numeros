@@ -8,7 +8,7 @@ results.forEach(li => {
 })
 
 // espera a animação terminar
-const animationDuration = 1200 // ms
+const animationDuration = 1000 // ms
 
 setTimeout(() => {
   button.classList.add("show")

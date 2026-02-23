@@ -299,10 +299,25 @@ aside #first {
   }
 
   & .draw{
-     & img {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(36, 34, 46, 0.8);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    & p{
+      font: var(--label-medium);
+      color: var(--content-primary);
+    }
+
+    & img {
       width: 24px;
       height: 24px;
-
       transition: transform 0.3s ease-in-out;
     }
 
@@ -378,7 +393,7 @@ aside #second {
   }
 }
 
-.draw{
+aside #second .draw {
     display: flex;
     gap: 8px;
     align-items: center;

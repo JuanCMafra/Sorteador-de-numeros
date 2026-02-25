@@ -7,23 +7,29 @@ const maxInput = document.querySelector("#maximo")
 const qtdInput = document.querySelector("#numbers")
 const repeatCheckbox = document.querySelector("#unique")
 
-// informa ao CSS quantos itens existem
 results.forEach(li => {
   li.style.setProperty("--total", results.length)
 })
-// espera a animação terminar
-const animationDuration = 1000 // ms
+const animationDuration = 1000
 setTimeout(() => {
   button.classList.add("show")
   wrapper.classList.add("shift-up")
 }, animationDuration)
 
 form.addEventListener("submit", (event)=> {
+  const min = Number(minInput.value)
+  const max = Number(maxInput.value)
+  const qtd = Number(qtdInput.value)
+  const no_Repeat = repeatCheckbox.checked
   event.preventDefault()
   minmax()
   noRepeat()
+  if(no_Repeat === true){
+    draw_noRepeat(min, max, qtd)
+    console.log(draw_noRepeat(min, max, qtd))
+  }else
+    draw_repeat()
 })
-
 
 function minmax(){
   const min = Number(minInput.value)
@@ -39,6 +45,12 @@ function noRepeat(){
   const noRepeat = repeatCheckbox.checked
 
   if(noRepeat && qtd > max){
-       alert("Erro! A quantidade não pode ser menor que o máximo quando não se permite repetições!")
+       alert("Erro! A quantidade não pode ser maior que o máximo quando não se permite repetições!")
   }
 }
+
+function draw_noRepeat(min, max, qtd){
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+

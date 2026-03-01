@@ -1,42 +1,67 @@
-const results = document.querySelectorAll("#results li")
-const button = document.getElementById("draw-again")
-const wrapper = document.querySelector("#second")
+const resultsContainer = document.getElementById("results")
+const button_again = document.getElementById("draw-again")
+const button = document.getElementById("draw")
+const second = document.getElementById("second")
+const first = document.getElementById("first")
 const form = document.querySelector("form")
 const minInput = document.querySelector("#minimo")
 const maxInput = document.querySelector("#maximo")
 const qtdInput = document.querySelector("#numbers")
 const repeatCheckbox = document.querySelector("#unique")
-
-results.forEach(li => {
-  li.style.setProperty("--total", results.length)
-})
 const animationDuration = 1000
+
 setTimeout(() => {
-  button.classList.add("show")
-  wrapper.classList.add("shift-up")
+  button_again.classList.add("show")
+  second.classList.add("shift-up")
 }, animationDuration)
 
-form.addEventListener("submit", (event)=> {
+draw.addEventListener("click", (event)=> {
   const min = Number(minInput.value)
   const max = Number(maxInput.value)
   const qtd = Number(qtdInput.value)
   const no_Repeat = repeatCheckbox.checked
 
   event.preventDefault()
-  minmax()
-  noRepeat()
+  try {
+    if (min > max){
+      throw new Error("O número minimo é maior que o máximo!")
+    } else {
+      second.classList.remove("display-none")
+      first.classList.add("display-none")
+    }
+
+    if (noRepeat && qtd > max){
+       throw new Error("A quantidade não pode ser maior que o máximo quando não se permite repetições!")
+    } else{
+      second.classList.remove("display-none")
+      first.classList.add("display-none")
+    }
+  } catch (error) {
+    alert(error)
+  }
+  
+  let drawnNumbers
   if(no_Repeat){
-    draw_noRepeat(min, max, qtd)    
-  }else
-    draw_repeat(min, max, qtd)
+    drawnNumbers = draw_noRepeat(min, max, qtd)   
+  } else {
+    drawnNumbers = draw_repeat(min, max, qtd)
+  }
+  
+  // Colocar os números nas listas
+  fillResults(drawnNumbers)
+
+  
+})
+
+draw_again.addEventListener("click", (event) => {
+  event.preventDefault()
+  first.classList.remove("display-none")
+  second.classList.add("display-none")
+
 })
 
 function minmax(){
-  const min = Number(minInput.value)
-  const max = Number(maxInput.value)
-  if (min > max){
-    alert("Erro! o número minimo é maior que o máximo!")
-  }
+  
 }
 
 function noRepeat(){
@@ -44,9 +69,7 @@ function noRepeat(){
   const qtd = Number(qtdInput.value)
   const noRepeat = repeatCheckbox.checked
 
-  if(noRepeat && qtd > max){
-       alert("Erro! A quantidade não pode ser maior que o máximo quando não se permite repetições!")
-  }
+  
 }
 
 function draw_noRepeat(min, max, qtd){
@@ -54,7 +77,7 @@ function draw_noRepeat(min, max, qtd){
   const possibleNumbers = []
   
   // Criar array com todos os números possíveis
-  for(let i = 0; i <= max; i++){
+  for(let i = min; i <= max; i++){
     possibleNumbers.push(i)
   }
   
@@ -73,9 +96,22 @@ function draw_repeat(min, max, qtd){
   
   // Gerar qtd números aleatórios com possível repetição
   for(let i = 0; i < qtd; i++){
-    drawn.push(Math.floor(Math.random() * ((min - max) + 1)) + min)
+    drawn.push(Math.floor(Math.random() * ((max - min) + 1)) + min)
   }
   
   return drawn
+}
+
+function fillResults(numbers) {
+  // Limpar os resultados anteriores
+  resultsContainer.innerHTML = ""
+  
+  // Criar uma li para cada número
+  numbers.forEach((number) => {
+    const li = document.createElement("li")
+    li.textContent = number
+    li.style.setProperty("--total", numbers.length)
+    resultsContainer.appendChild(li)
+  })
 }
 

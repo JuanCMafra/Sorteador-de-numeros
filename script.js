@@ -21,14 +21,14 @@ form.addEventListener("submit", (event)=> {
   const max = Number(maxInput.value)
   const qtd = Number(qtdInput.value)
   const no_Repeat = repeatCheckbox.checked
+
   event.preventDefault()
   minmax()
   noRepeat()
-  if(no_Repeat === true){
-    draw_noRepeat(min, max, qtd)
-    console.log(draw_noRepeat(min, max, qtd))
+  if(no_Repeat){
+    draw_noRepeat(min, max, qtd)    
   }else
-    draw_repeat()
+    draw_repeat(min, max, qtd)
 })
 
 function minmax(){
@@ -50,7 +50,32 @@ function noRepeat(){
 }
 
 function draw_noRepeat(min, max, qtd){
-  return Math.floor(Math.random() * (max - min + 1)) + min
+  const drawn = []
+  const possibleNumbers = []
+  
+  // Criar array com todos os números possíveis
+  for(let i = 0; i <= max; i++){
+    possibleNumbers.push(i)
+  }
+  
+  // Embaralhar e pegar qtd números
+  for(let i = 0; i < qtd; i++){
+    const randomIndex = Math.floor(Math.random() * possibleNumbers.length)
+    drawn.push(possibleNumbers[randomIndex])
+    possibleNumbers.splice(randomIndex, 1)
+  }
+  
+  return drawn
 }
 
+function draw_repeat(min, max, qtd){
+  const drawn = []
+  
+  // Gerar qtd números aleatórios com possível repetição
+  for(let i = 0; i < qtd; i++){
+    drawn.push(Math.floor(Math.random() * ((min - max) + 1)) + min)
+  }
+  
+  return drawn
+}
 

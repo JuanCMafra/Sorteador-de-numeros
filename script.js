@@ -25,14 +25,10 @@ draw.addEventListener("click", (event)=> {
   try {
     if (min > max){
       throw new Error("O número minimo é maior que o máximo!")
-    } else {
-      second.classList.remove("display-none")
-      first.classList.add("display-none")
-    }
-
-    if (noRepeat && qtd > max){
-       throw new Error("A quantidade não pode ser maior que o máximo quando não se permite repetições!")
-    } else{
+    } if (no_Repeat && qtd > max) {
+      throw new Error("A quantidade não pode ser maior que o máximo quando não se permite repetições!")
+    }  
+    else {
       second.classList.remove("display-none")
       first.classList.add("display-none")
     }
@@ -48,29 +44,14 @@ draw.addEventListener("click", (event)=> {
   }
   
   // Colocar os números nas listas
-  fillResults(drawnNumbers)
-
-  
+  fillResults(drawnNumbers)  
 })
 
 draw_again.addEventListener("click", (event) => {
   event.preventDefault()
   first.classList.remove("display-none")
   second.classList.add("display-none")
-
 })
-
-function minmax(){
-  
-}
-
-function noRepeat(){
-  const max = Number(maxInput.value)
-  const qtd = Number(qtdInput.value)
-  const noRepeat = repeatCheckbox.checked
-
-  
-}
 
 function draw_noRepeat(min, max, qtd){
   const drawn = []

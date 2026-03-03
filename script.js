@@ -15,39 +15,40 @@ setTimeout(() => {
   second.classList.add("shift-up")
 }, animationDuration)
 
-draw.addEventListener("click", (event)=> {
+button.addEventListener("click", (event)=> {
   const min = Number(minInput.value)
   const max = Number(maxInput.value)
   const qtd = Number(qtdInput.value)
   const no_Repeat = repeatCheckbox.checked
 
   event.preventDefault()
+
+  if (!form.checkValidity()){
+    form.reportValidity()
+    return
+  }  
   try {
     if (min > max){
       throw new Error("O número minimo é maior que o máximo!")
     } if (no_Repeat && qtd > max) {
       throw new Error("A quantidade não pode ser maior que o máximo quando não se permite repetições!")
-    }  
-    else {
-      second.classList.remove("display-none")
-      first.classList.add("display-none")
     }
+    second.classList.remove("display-none")
+    first.classList.add("display-none")
+
+    let drawnNumbers
+    if(no_Repeat){
+      drawnNumbers = draw_noRepeat(min, max, qtd)   
+    } else {
+      drawnNumbers = draw_repeat(min, max, qtd)
+    }
+    fillResults(drawnNumbers)  
   } catch (error) {
     alert(error)
-  }
-  
-  let drawnNumbers
-  if(no_Repeat){
-    drawnNumbers = draw_noRepeat(min, max, qtd)   
-  } else {
-    drawnNumbers = draw_repeat(min, max, qtd)
-  }
-  
-  // Colocar os números nas listas
-  fillResults(drawnNumbers)  
+  } 
 })
 
-draw_again.addEventListener("click", (event) => {
+button_again.addEventListener("click", (event) => {
   event.preventDefault()
   first.classList.remove("display-none")
   second.classList.add("display-none")
@@ -84,10 +85,7 @@ function draw_repeat(min, max, qtd){
 }
 
 function fillResults(numbers) {
-  // Limpar os resultados anteriores
   resultsContainer.innerHTML = ""
-  
-  // Criar uma li para cada número
   numbers.forEach((number) => {
     const li = document.createElement("li")
     li.textContent = number

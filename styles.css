@@ -362,9 +362,10 @@ aside #second {
 
   & #results {
     display: grid;
-    grid-auto-flow: column;
-    gap: 16px;
+    grid-template-columns: repeat(3, max-content);
+    gap: 50px;
     justify-content: center;
+    justify-items: center;
 
     & li {
       position: relative;

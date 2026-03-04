@@ -89,7 +89,6 @@ function fillResults(numbers) {
   numbers.forEach((number) => {
     const li = document.createElement("li")
     li.textContent = number
-    li.style.setProperty("--total", numbers.length)
     resultsContainer.appendChild(li)
   })
 }

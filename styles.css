@@ -337,6 +337,7 @@ aside #second {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  justify-items: center;
   gap: 40px;
   margin-top: 71px;
 
@@ -361,28 +362,27 @@ aside #second {
   }
 
   & #results {
-    display: grid;
-    grid-template-columns: repeat(3, max-content);
+    display: flex;
+    flex-wrap: wrap;
     gap: 50px;
     justify-content: center;
     justify-items: center;
-
+    align-items: center;
+    margin: 0 auto;
+    
     & li {
       position: relative;
       font: bolder 48px/150% var(--font-family-mono);
       color: var(--content-brand);
       padding-inline: 20px;
       list-style: none;
-      opacity: 0;
-
-      --offset: calc(var(--i) - (var(--total) - 1) / 2);
-
+      opacity: 0;      
       animation: number-move 7s ease forwards;
 
       &::before {
         content: "";
         position: absolute;
-        inset: -16px;
+        inset: -14px;
         background: url(/img/square.svg) no-repeat center / contain;
         z-index: -1;
         opacity: 0;

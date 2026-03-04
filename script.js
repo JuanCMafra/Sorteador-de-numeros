@@ -88,7 +88,9 @@ function fillResults(numbers) {
   resultsContainer.innerHTML = ""
   numbers.forEach((number) => {
     const li = document.createElement("li")
-    li.textContent = number
+    const span = document.createElement('span')
+    span.textContent = number
+    li.appendChild(span)
     resultsContainer.appendChild(li)
   })
 }

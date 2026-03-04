@@ -388,7 +388,7 @@ aside #second {
         content: "";
         position: absolute;
         inset: -14px;
-        background: url(/img/square.svg) no-repeat center / contain;
+        background: url(./img/square.svg) no-repeat center / contain;
         z-index: 0;
         opacity: 0;
 

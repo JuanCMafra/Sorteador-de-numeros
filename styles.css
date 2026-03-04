@@ -377,7 +377,7 @@ aside #second {
       padding-inline: 20px;
       list-style: none;
       opacity: 0;
-      animation: number-move 7s ease both;
+      animation: number-move 5s ease both;
 
       & span {
         position: relative;
@@ -392,7 +392,7 @@ aside #second {
         z-index: 0;
         opacity: 0;
 
-         animation: square-spin 7s ease both;
+         animation: square-spin 5s ease both;
          animation-timing-function: cubic-bezier(0.4, 0.5, 0.8, 1);
       }
     } 
@@ -628,17 +628,12 @@ aside #second .draw {
     color: var(--content-brand);
   }
 
-  30% {
+  60% {
     opacity: 1;
     color: var(--content-brand);
   }
 
-  40% {
-    opacity: 1;
-    color: var(--content-brand);
-  }
-
-  95% {
+  90% {
     opacity: 1;
     color: #000;
   }

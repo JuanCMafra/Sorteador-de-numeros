@@ -664,7 +664,7 @@ aside #second .draw {
   }
 
   #results li::before {
-    opacity: 1;
+    opacity: 0;
     transform: rotate(0deg);
   }
 }
